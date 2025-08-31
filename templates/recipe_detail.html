@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+{% block title %}{{ r.title }} — Cooking Odyssey{% endblock %}
+{% block content %}
+  <div class="individual_recipe_grid">
+    <h3>{{ r.title }}</h3>
+
+    <div class="recipe_image_wrapper">
+      {% if r.hero_image %}
+        <img src="{{ r.hero_image.url }}" alt="{{ r.title }}">
+      {% endif %}
+    </div>
+
+    {% if r.description %}
+      <p>{{ r.description }}</p>
+    {% endif %}
+
+    <div class="ingredients">
+      <h4>Ingredients</h4>
+      <ul>
+        {% for i in r.ingredient_list %}
+          <li>{{ i }}</li>
+        {% endfor %}
+      </ul>
+    </div>
+
+    <div class="cooking_directions">
+      <h4>Directions</h4>
+      <ol>
+        {% for s in r.step_list %}
+          <li>{{ s }}</li>
+        {% endfor %}
+      </ol>
+
+      <h4>Nutrition Facts (per serving):</h4>
+      <ul>
+        <li>Protein: {{ r.protein_g }}g</li>
+        <li>Fat: {{ r.fat_g }}g</li>
+        <li>Carbohydrates: {{ r.carbs_g }}g</li>
+        <li>Calories: {{ r.calories_kcal }}</li>
+      </ul>
+    </div>
+
+    <div class="support-recipe">
+        <span>
+          {{ support_message.emoji_start|safe }} {{ support_message.text }}
+          <a href="https://www.buymeacoffee.com/annaseregina" target="_blank" class="support-link">
+            {{ support_message.link_text }}
+          </a>
+        {{ support_message.emoji_end|safe }}
+        </span>
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,7 @@
+# Environment files
+.env
+.env.dev
+.env.prod
+
+# Helper scripts
+setenv.sh

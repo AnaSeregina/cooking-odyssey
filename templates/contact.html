@@ -1,0 +1,78 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Contact Us — Cooking Odyssey{% endblock %}
+
+{% block content %}
+<div class="wallpaper_primer">
+  <div class="wallpaper_layer">
+    <div class="contact_container">
+      <h2>Contact Us</h2>
+      <p class="intro_text">
+        We'd love to hear your thoughts!<br>
+        Whether it's a suggestion, a kind word, or a recipe idea, send it our way.
+      </p>
+
+      {# Flash messages (success/error) #}
+      {% if messages %}
+        <div class="messages">
+          {% for m in messages %}
+            <div class="message {{ m.tags }}">{{ m|safe }}</div>
+          {% endfor %}
+        </div>
+      {% endif %}
+
+      <form action="{% url 'contact' %}" method="post" novalidate onsubmit="disableSubmit(this)">
+        {% csrf_token %}
+        {{ form.hp }} {# honeypot hidden field #}
+
+        <div class="contact_fields_grid_new">
+          <div>
+            <label for="{{ form.name.id_for_label }}" class="required_field">Name</label>
+            {{ form.name }}
+            {% if form.name.errors %}<div class="field_error">{{ form.name.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div>
+            <label for="{{ form.email.id_for_label }}" class="required_field">E-mail</label>
+            {{ form.email }}
+            {% if form.email.errors %}<div class="field_error">{{ form.email.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div>
+            <label for="{{ form.message.id_for_label }}" class="required_field">Message</label>
+            {{ form.message }}
+            {% if form.message.errors %}<div class="field_error">{{ form.message.errors.0 }}</div>{% endif %}
+          </div>
+
+          <div>
+            <label for="{{ form.fun_question.id_for_label }}">What's your favorite retro-inspired dish?</label>
+            {{ form.fun_question }}
+          </div>
+
+          <div>
+            <div class="button_group">
+              <div><button type="submit" id="submit-btn">Submit Your Message</button></div>
+            </div>
+          </div>
+        </div>
+      </form>
+
+
+      <script>
+        function disableSubmit(form) {
+          const btn = document.getElementById("submit-btn");
+          if (btn) {
+            btn.disabled = true;
+            btn.innerText = "Sending... ✦";
+          }
+          return true; // allow submit to continue
+        }
+      </script>
+  
+      <p class="contact_info">
+        Or email us directly at <a href="mailto:contact@cookingodyssey.net">contact@cookingodyssey.net</a>
+      </p>
+    </div>
+  </div>
+</div>
+{% endblock %}

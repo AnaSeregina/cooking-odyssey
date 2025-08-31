@@ -1,0 +1,73 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400..900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+
+  <!-- Icons/Favicons -->
+  <link rel="apple-touch-icon" href="{% static 'img/icon_rocket_fork_best.ico' %}" sizes="any">
+  <link rel="icon" href="{% static 'img/icon_rocket_fork_best.ico' %}" sizes="any" type="image/x-icon">
+  <link rel="icon" type="image/png" sizes="16x16" href="{% static 'img/favicon_16px.png' %}">
+  <link rel="apple-touch-icon-precomposed" href="{% static 'img/icon_rocket_fork_best.ico' %}?v=M44lzPylqQ" sizes="any">
+
+  <!-- Your CSS -->
+  <link href="{% static 'css/main.css' %}" rel="stylesheet" type="text/css">
+
+  <title>{% block title %}Welcome to the Cooking Odyssey{% endblock %}</title>
+
+  <script>
+    function toggle_menu() {
+      const navLinks = document.querySelector('.nav_links');
+      navLinks.classList.toggle('show');
+    }
+  </script>
+   
+</head>
+<body>
+  <div class="background"></div>
+  <div class="body_container">
+    <nav>
+      <div>
+        <a href="{% url 'home' %}" style="padding:0px;">
+            <h1>Cooking Odyssey</h1></a>
+        <p class="slogan">Savor the Past, Cook for the Future</p>
+      </div>
+      <button class="menu_toggle" aria-label="Toggle menu" onclick="toggle_menu()">☰</button>
+      <ul class="nav_links">
+        <li><a href="{% url 'nutrition' %}">Nutrition Facts</a></li>
+        <li><a href="{% url 'about' %}">About</a></li>
+        <li><a href="{% url 'contact' %}">Contact Us</a></li>
+        <li><a href="https://www.buymeacoffee.com/annaseregina" target="_blank" class="support-nav" 
+            title="Opens Buy Me a Coffee in a new tab">
+            Support  
+            <!-- Retro external arrow -->
+            <svg class="external-icon" viewBox="0 0 24 24" aria-hidden="true" xmlns="http://www.w3.org/2000/svg">
+                <!-- Diagonal arrow: up-right -->
+                <path d="M5 19 L19 5" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+                <!-- Arrow head -->
+                <path d="M11 5 H19 V13" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"/>
+            </svg>
+        </a></li>
+      </ul>
+    </nav>
+    <div class="content_wrapper">
+      <div class="transparent_layer">
+        {% block content %}{% endblock %}
+      </div>
+      <footer>
+        <p>&copy;{% now "Y" %} Cooking Odyssey. All rights reserved.</p>
+      </footer>
+    </div>
+  </div>
+  {% if not debug %}
+  <!-- Cloudflare Web Analytics -->
+   <script defer src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "c4254dc327d74ff5bd273c9649ea4e20"}'></script>
+   <!-- End Cloudflare Web Analytics -->
+   {% endif %}
+</body>
+</html>

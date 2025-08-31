@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block title %}Welcome to the Cooking Odyssey{% endblock %}
+{% block content %}
+  <div class="recipe_collection_grid">
+    {% for r in recipes %}
+      <div class="recipe_card">
+        <h3><a href="{% url 'recipe_detail' slug=r.slug %}">{{ r.title }}</a></h3>
+        <a class="recipe_image_wrapper" href="{% url 'recipe_detail' slug=r.slug %}">
+            {% if r.hero_image %}
+              <img src="{{ r.hero_image.url }}" alt="{{ r.title }}">
+            {% endif %}
+        </a>
+       
+        {% if r.description %}
+          <div class="card_footer">{{ r.description }}</div>
+        {% endif %}
+      </div>
+    {% empty %}
+      <p>No recipes yet. Add some in <a href="/admin/">Admin</a>.</p>
+    {% endfor %}
+  </div>
+{% endblock %}

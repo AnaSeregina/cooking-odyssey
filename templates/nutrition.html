@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}Recipe Nutrition Facts — Cooking Odyssey{% endblock %}
+{% block content %}
+<div class="nutrition_facts">
+  <h3>Recipe Nutrition Facts</h3>
+  <div class="nutrition_facts_grid_new">
+    <div class="header">
+      <h4>Recipe Name</h4>
+      <h4>Calories</h4>
+      <h4>Protein</h4>
+      <h4>Fat</h4>
+      <h4 title="Carbohydrates">Carbs</h4>
+      <h4>Serving</h4>
+    </div>
+
+    {% for r in recipes %}
+    <a class="recipe" href="{% url 'recipe_detail' slug=r.slug %}">
+        <div class="name">{{ r.title }}</div>
+        <div class="calories">{{ r.calories_kcal }}</div>
+        <div class="protein">{{ r.protein_g }}g</div>
+        <div class="fat">{{ r.fat_g }}g</div>
+        <div class="carbohydrates">{{ r.carbs_g }}g</div>
+        <div class="serving">{{ r.serving_display }}</div>
+    </a>
+    {% empty %}
+      <p>No recipes yet.</p>
+    {% endfor %}
+  </div>
+</div>
+{% endblock %}

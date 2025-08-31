@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block title %}About — Cooking Odyssey{% endblock %}
+{% block content %}
+<div class="wallpaper_primer">
+  <div class="wallpaper_layer">
+    <div class="aboutpage_text">
+
+      <h2>About Cooking Odyssey</h2>
+      <p>Welcome to Cooking Odyssey — a joyful journey through the flavors of life!</p>
+
+      <h3>A Retro-Future Dream</h3>
+      <p>Inspired by the boundless optimism of the 1950s and 60s, Cooking Odyssey blends retro-futuristic charm with the timeless delight of home-cooked meals. Back then, the future looked bright, colorful, and full of possibilities — just like the recipes you'll find here.
+      </p>
+      <h3>A Personal Recipe Collection</h3>
+      <p>It all started with a simple idea: I needed a place to gather my favorite recipes. A book seemed too ordinary, and formal recipe sites felt too serious. That's when it struck me: why not create something fun, happy, and entirely my own? Thus, Cooking Odyssey was born — a joyful collection of delicious meals.
+      </p>
+      <h3>More Than Just Recipes</h3>
+      <p>Here, every dish isn't just about food — it's about sparking happiness. Each recipe carries a touch of positivity, designed to bring a smile to your face while inspiring you to cook, taste, and explore. Think of it as cooking with a side of good vibes!
+      </p>
+      <h3>Join the Journey</h3>
+      <p>Whether you're here to whip up something tasty or simply soak in the retro-futuristic charm, you're in the right place. Let's cook, smile, and savor the adventure together!
+      </p>
+
+      <div class="button_container" style1="border: 1px solid blue;">
+        <form action="{% url 'home' %}" method="get" style="display:inline;"><button type="submit" class="submit-btn">Explore Recipes</button></form>
+      </div>
+    </div>
+  </div>
+</div>
+{% endblock %}
