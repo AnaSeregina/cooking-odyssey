@@ -1,7 +1,27 @@
-# Environment files
+# Python
+*.pyc
+__pycache__/
+*.pyo
+*.pyd
+*.sqlite3
+
+# Virtual environment
+.venv/
+env/
+
+# VSCode
+.vscode/
+
+# Environment files (secrets)
 .env
 .env.dev
 .env.prod
 
 # Helper scripts
 setenv.sh
+
+# Media uploads (user-uploaded images)
+media/
+
+# Collected static files
+/staticfiles/
