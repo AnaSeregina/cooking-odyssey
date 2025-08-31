@@ -25,3 +25,5 @@ media/
 
 # Collected static files
 /staticfiles/
+
+.DS_Store
