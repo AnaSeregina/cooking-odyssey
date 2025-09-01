@@ -59,8 +59,14 @@ body {
 }
 
 .background {
-    background-image: url(/static/img/retro_future_wallpaper_for_cooking_space.png);
+    background-image: image-set(
+        url("/static/img/retro_future_wallpaper_for_cooking_space.avif") type("image/avif"),
+        url("/static/img/retro_future_wallpaper_for_cooking_space.webp") type("image/webp"),
+        url("/static/img/retro_future_wallpaper_for_cooking_space.jpg") type("image/jpeg")
+      );
+
     background-size: cover;
+    background-position: center;
     top: 0;
     left: 0;
     position: absolute;
@@ -758,7 +764,12 @@ pre {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url("/static/img/wallpaper.png");
+    background-image: image-set(
+      url("/static/img/wallpaper.avif") type("image/avif"),
+      url("/static/img/wallpaper.webp") type("image/webp"),
+      url("/static/img/wallpaper.jpg") type("image/jpeg")
+    );
+    /* background-image: url("/static/img/wallpaper.png"); */
     background-size:cover;
     background-position: center;
     opacity: 0.4; /* add transparency to the image */

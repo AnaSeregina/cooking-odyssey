@@ -1,5 +1,7 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}About — Cooking Odyssey{% endblock %}
+{% block extra_head %}<link rel="preload" as="image" href="{% static 'img/wallpaper.avif' %}">{% endblock %}
 {% block content %}
 <div class="wallpaper_primer">
   <div class="wallpaper_layer">
