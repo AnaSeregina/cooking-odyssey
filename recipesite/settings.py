@@ -86,13 +86,24 @@ WSGI_APPLICATION = 'recipesite.wsgi.application'
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
 
+
+BASE_DIR = Path(__file__).resolve().parent.parent
+DB_PATH = config("DB_PATH", default=str(BASE_DIR / "db.sqlite3"))
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": str(os.environ.get("DB_PATH", BASE_DIR / "db.sqlite3")),
+        "NAME": DB_PATH,
     }
 }
 
+
+# DATABASES = {
+#     "default": {
+#         "ENGINE": "django.db.backends.sqlite3",
+#         "NAME": str(os.environ.get("DB_PATH", BASE_DIR / "db.sqlite3")),
+#     }
+# }
 
 
 # DATABASES = {
@@ -154,7 +165,8 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.environ.get("MEDIA_ROOT", BASE_DIR / "media")
+# MEDIA_ROOT = os.environ.get("MEDIA_ROOT", BASE_DIR / "media")
+MEDIA_ROOT = config("MEDIA_ROOT", default=str(BASE_DIR / "media"))
 
 
 
