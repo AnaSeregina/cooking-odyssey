@@ -98,6 +98,9 @@ DATABASES = {
 }
 
 
+print("🔥 RUNTIME DB NAME:", DATABASES["default"]["NAME"])
+
+
 # DATABASES = {
 #     "default": {
 #         "ENGINE": "django.db.backends.sqlite3",
