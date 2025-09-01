@@ -85,12 +85,15 @@ WSGI_APPLICATION = 'recipesite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.sqlite3",
-        "NAME": os.environ.get("DB_PATH", BASE_DIR / "db.sqlite3"),
+        "NAME": str(os.environ.get("DB_PATH", BASE_DIR / "db.sqlite3")),
     }
 }
+
+
 
 # DATABASES = {
 #     'default': {
