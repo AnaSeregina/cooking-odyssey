@@ -32,5 +32,5 @@ urlpatterns = [
     path("", include("recipes.urls")),  # delegate to app
 ]
 
-if settings.DEBUG:
-    urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+# Serve user-uploaded media files (hero images)
+urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
