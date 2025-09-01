@@ -1,12 +1,15 @@
 {% extends "base.html" %}
+{% load static %}
 {% block title %}{{ r.title }} — Cooking Odyssey{% endblock %}
 {% block content %}
   <div class="individual_recipe_grid">
     <h3>{{ r.title }}</h3>
 
     <div class="recipe_image_wrapper">
-      {% if r.hero_image %}
+      {% if r.hero_image and r.hero_image.name %}
         <img src="{{ r.hero_image.url }}" alt="{{ r.title }}">
+      {% else %}
+        <img src="{% static 'img/placeholder_recipe.png' %}" alt="{{ r.title }}">
       {% endif %}
     </div>
 
