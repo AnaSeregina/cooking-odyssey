@@ -124,3 +124,9 @@ LOGGING = {
     },
 }
 
+# --- Security (production) ---
+SESSION_COOKIE_SECURE = config("SESSION_COOKIE_SECURE", default=not DEBUG, cast=bool)
+CSRF_COOKIE_SECURE    = config("CSRF_COOKIE_SECURE",    default=not DEBUG, cast=bool)
+SECURE_SSL_REDIRECT   = config("SECURE_SSL_REDIRECT",   default=not DEBUG, cast=bool)
+SECURE_CONTENT_TYPE_NOSNIFF = True
+SECURE_PROXY_SSL_HEADER = ("HTTP_X_FORWARDED_PROTO", "https")
