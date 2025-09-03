@@ -168,9 +168,28 @@
   }
   .recipe_card img:hover{ transform:scale(1.05); box-shadow:0 0 45px var(--brand-pop); filter:drop-shadow(0 8px 2px rgba(13,40,78,.563)); background:linear-gradient(45deg, rgba(255,145,2,.5), rgba(250,47,1,.5)); cursor:pointer; }
   
-  .recipe_image_wrapper>img{ width:100%; height:auto; border-radius:var(--radius-lg); background:linear-gradient(45deg, rgba(244,139,2,.2), rgba(250,47,1,.2)); will-change:filter; transform:translateZ(0); }
-  
+  /* .recipe_image_wrapper>img{ width:100%; height:auto; border-radius:var(--radius-lg); background:linear-gradient(45deg, rgba(244,139,2,.2), rgba(250,47,1,.2)); will-change:filter; transform:translateZ(0); }
+   */
+
+  .recipe_image_wrapper img{
+    width:100%;
+    height:auto;
+    border-radius:var(--radius-lg);
+    background:linear-gradient(45deg, rgba(244,139,2,.2), rgba(250,47,1,.2));
+    will-change:filter;
+    transform:translateZ(0);
+  }
+
+
   .card_footer{ font-size:14px; padding:20px 30px; color:rgb(107,94,61); display:flex; align-items:center; justify-content:center; text-align:center; }
+
+
+/* Placeholder recipe image styling */
+.placeholder-img {
+  opacity: 0.3; /* makes it semi-transparent */
+}
+
+  
   
   /* ============ Recipe Detail ============ */
   .individual_recipe_grid{

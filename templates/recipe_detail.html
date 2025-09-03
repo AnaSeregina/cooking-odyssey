@@ -1,15 +1,38 @@
 {% extends "base.html" %}
 {% load static %}
+{% load static imagefmt %}
 {% block title %}{{ r.title }} — Cooking Odyssey{% endblock %}
 {% block content %}
   <div class="individual_recipe_grid">
     <h3>{{ r.title }}</h3>
 
+    
     <div class="recipe_image_wrapper">
       {% if r.hero_image and r.hero_image.name %}
-        <img src="{{ r.hero_image.url }}" alt="{{ r.title }}">
+        {% with base=r.hero_image.url|remove_ext %}
+          <picture>
+            <source srcset="{{ base }}.avif" type="image/avif">
+            <source srcset="{{ base }}.webp" type="image/webp">
+            <img
+              src="{{ r.hero_image.url }}"
+              alt="{{ r.title }}"
+              loading="lazy"
+              decoding="async"
+            >
+          </picture>
+        {% endwith %}
       {% else %}
-        <img src="{% static 'img/placeholder_recipe.png' %}" alt="{{ r.title }}">
+        <picture>
+          <source srcset="{% static 'img/no_image_yet.avif' %}" type="image/avif">
+          <source srcset="{% static 'img/no_image_yet.webp' %}" type="image/webp">
+          <img
+            src="{% static 'img/no_image_yet.png' %}"
+            alt="{{ r.title }}"
+            class="placeholder-img"
+            loading="lazy"
+            decoding="async"
+          >
+        </picture>
       {% endif %}
     </div>
 
