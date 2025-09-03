@@ -80,7 +80,7 @@ def contact_view(request):
                 fail_silently=False,
             )
 
-            messages.success(request, "<span class='star-accent'>✦</span> Thanks you! Your message has been sent <span class='star-accent'>✦</span>")
+            messages.success(request, "<span class='star-accent'>✦</span> Thank you! Your message has been sent <span class='star-accent'>✦</span>")
             return redirect("contact")  # show empty form again with success banner
     else:
         form = ContactForm()
