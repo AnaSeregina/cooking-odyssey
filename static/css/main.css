@@ -198,24 +198,39 @@
   }
   
   .nutrition_facts_grid_new{
-    display:grid; grid-auto-rows:auto; gap:1px; background-color:#d6c6aa; border:1px solid #bc9e75; border-radius:var(--radius-lg);
-    box-shadow:0 10px 45px rgba(236,118,1,.4); filter:drop-shadow(0 4px 6px rgba(16,64,130,.563)); overflow:hidden; margin-top:25px;
+    display:grid; 
+    grid-auto-rows:auto; 
+    gap:1px; 
+    background-color:#d6c6aa; 
+    border:1px solid #bc9e75; 
+    border-radius:var(--radius-lg);
+    box-shadow:0 10px 45px rgba(236,118,1,.4); 
+    filter:drop-shadow(0 4px 6px rgba(16,64,130,.563)); 
+    overflow:hidden; 
+    margin-top:25px;
   }
   
   .nutrition_facts_grid_new>.header{ display:grid; grid-template-columns:var(--grid-columns); background-color:var(--brand-beige); text-align:center; }
-  .nutrition_facts_grid_new .recipe{ display:grid; grid-template-columns:var(--grid-columns); background-color:var(--brand-beige); text-align:center; color: #55463f; transition:background-color .5s ease; }
+  .nutrition_facts_grid_new .recipe { 
+    display:grid; 
+    grid-template-columns:var(--grid-columns); 
+    background-color:var(--brand-beige); 
+    text-align:center; 
+    color: #55463f;
+    }
   
-  .nutrition_facts_grid_new .header h4, .nutrition_facts_grid_new .recipe div{ padding:10px; border:1px solid transparent; }
+  .nutrition_facts_grid_new .header h4, .nutrition_facts_grid_new .recipe div{ 
+    padding:10px;
+}
   .nutrition_facts_grid_new .header h4:first-child{ text-wrap:nowrap; }
   .nutrition_facts_grid_new .recipe div:first-child{ text-align:left; }
   
-  .nutrition_facts_grid_new .recipe:hover{
-    background:linear-gradient(45deg, rgba(244,139,2,.3), rgba(156,27,5,.2)); 
+  .nutrition_facts_grid_new .recipe:hover {
     background-color:var(--brand-beige);
+    color: #d95214; 
     cursor:pointer;
   }
   
-  .nutrition_facts_grid_new .recipe:last-child:hover{ border-bottom-left-radius:var(--radius-lg); border-bottom-right-radius:var(--radius-lg); background:linear-gradient(45deg, rgba(244,139,2,.3), rgba(156,27,5,.2)); box-shadow:none; filter:none; }
   
   /* ============ About & Contact – Wallpaper Panel ============ */
   .wallpaper_primer{
@@ -248,7 +263,7 @@
   .contact_container{ padding:35px 50px 0; }
   
   .contact_fields_grid_new{
-    display:grid; gap:0; background:#d6c6aa; border:none; overflow:hidden; border1:1px solid orange; /* consider adjusting */
+    display:grid; gap:0; background:#d6c6aa; border:none; overflow:hidden; /* consider adjusting */
   }
   .contact_fields_grid_new>div{ background:var(--brand-beige); text-align:left; padding:25px 3px 2px; place-content:center; }
   
@@ -350,5 +365,34 @@
     .card_footer{ padding:0; }
     .recipe_card img{ width:100px; height:auto; }
     .individual_recipe_grid{ margin:10px; }
+  }
+
+  /* iOS/Safari scroll fix for Nutrition grid */
+@media (max-width: 768px) {
+    /* Remove filter/box-shadow + clipping on the grid wrapper */
+    .nutrition_facts_grid_new {
+      transform: translateZ(0);       /* standard */
+      -webkit-transform: translateZ(0); /* legacy Safari */
+
+      backface-visibility: hidden;
+      -webkit-backface-visibility: hidden;
+    }
+  
+    /* The row “cards” — avoid forcing new layers or hover effects on mobile */
+    .nutrition_facts_grid_new .recipe {
+      background: var(--brand-beige);  /* keep solid background */
+    }
+  
+    /* Nix the hover glow on touch devices */
+    .nutrition_facts_grid_new .recipe:hover {
+      background: var(--brand-beige) !important;
+      box-shadow: none !important;
+      filter: none !important;
+    }
+  }
+  
+  /* Smooth native momentum scrolling for the scrolling container on iOS */
+  .body_container {
+    -webkit-overflow-scrolling: touch;
   }
   
