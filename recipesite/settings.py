@@ -30,7 +30,9 @@ INSTALLED_APPS = [
     "django.contrib.messages",
     "django.contrib.staticfiles",
     "recipes",
+    "django.contrib.sitemaps",
 ]
+
 
 # --- Middleware ---
 MIDDLEWARE = [

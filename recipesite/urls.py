@@ -21,6 +21,10 @@ from django.conf import settings
 from django.views.static import serve
 from django.http import HttpResponse
 
+from django.contrib.sitemaps.views import sitemap
+from recipes.sitemaps import RecipeSitemap, StaticViewSitemap  # adjust app name if needed
+
+
 def healthz(_request):
     return HttpResponse("ok")
 
@@ -30,7 +34,13 @@ urlpatterns = [
     path("", include("recipes.urls")),
 ]
 
+sitemaps = {
+    "recipes": RecipeSitemap,
+    "static": StaticViewSitemap,
+}
+
 # Serve user-uploaded media files even if DEBUG=False
 urlpatterns += [
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
 ]
