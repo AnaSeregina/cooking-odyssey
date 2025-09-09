@@ -24,9 +24,25 @@ from django.http import HttpResponse
 from django.contrib.sitemaps.views import sitemap
 from recipes.sitemaps import RecipeSitemap, StaticViewSitemap  # adjust app name if needed
 
+from django.views.decorators.http import require_GET
+
+
 
 def healthz(_request):
     return HttpResponse("ok")
+
+
+@require_GET
+def robots_txt(_request):
+    content = "\n".join([
+        "User-agent: *",
+        "Allow: /",
+        "Sitemap: https://www.cookingodyssey.net/sitemap.xml",
+    ])
+    resp = HttpResponse(content, content_type="text/plain")
+    resp["Cache-Control"] = "public, max-age=3600"
+    return resp
+
 
 urlpatterns = [
     path("healthz/", healthz),
@@ -42,5 +58,10 @@ sitemaps = {
 # Serve user-uploaded media files even if DEBUG=False
 urlpatterns += [
     re_path(r"^media/(?P<path>.*)$", serve, {"document_root": settings.MEDIA_ROOT}),
-    path("sitemap.xml", sitemap, {"sitemaps": sitemaps}, name="sitemap"),
+    path("sitemap.xml", sitemap, {"sitemaps": sitemaps, "protocol": "https"}, name="sitemap"),
+    path("robots.txt", robots_txt, name="robots_txt"),
 ]
+
+
+
+
