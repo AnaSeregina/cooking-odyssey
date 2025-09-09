@@ -3,14 +3,15 @@ from django.urls import reverse
 from .models import Recipe
 
 class RecipeSitemap(Sitemap):
-    changefreq = "monthly"   # recipes rarely change
+    changefreq = "monthly"
     priority = 0.8
 
     def items(self):
-        return Recipe.objects.all()
+        # skip recipes without a valid slug
+        return Recipe.objects.filter(slug__isnull=False).exclude(slug="")
 
     def location(self, obj):
-        return reverse("recipe_detail", args=[obj.slug])
+        return reverse("recipe_detail", kwargs={"slug": obj.slug})
 
 
 class StaticViewSitemap(Sitemap):
